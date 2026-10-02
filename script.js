@@ -105,7 +105,9 @@ noBtn.addEventListener('click', dodgeNo);
 // (GPU-cheap), cap at ~110 particles, cap DPR at 1.5, delta-time movement,
 // in-place culling, and auto-stop after ~7s.
 const canvas = document.getElementById('rain');
-const ctx = canvas.getContext('2d', { alpha: true, desynchronized: true });
+// NOTE: no `desynchronized: true` — it makes this fullscreen canvas render
+// as an opaque BLACK layer on some mobile Chrome GPUs. Plain alpha canvas.
+const ctx = canvas.getContext('2d', { alpha: true });
 const DPR = Math.min(window.devicePixelRatio || 1, 1.5);
 let W = 0, H = 0;
 
@@ -286,6 +288,7 @@ function tick(ts) {
   if (Date.now() > stopSpawningAt && particles.length === 0) {
     raining = false;
     ctx.clearRect(0, 0, W, H);
+    canvas.style.display = 'none';
     return;
   }
   rafId = requestAnimationFrame(tick);
@@ -312,6 +315,7 @@ function drawStatic(p) {
 }
 
 function startTulipRain(encoreMs = RAIN_MS) {
+  canvas.style.display = 'block'; // canvas only exists visually while raining
   if (reduceMotion) {
     // static confetti, no loop — tulips + the grasshopper
     sizeCanvas();
@@ -343,6 +347,7 @@ document.addEventListener('visibilitychange', () => {
     cancelAnimationFrame(rafId);
     particles = [];
     ctx.clearRect(0, 0, W, H);
+    canvas.style.display = 'none';
   }
 });
 
