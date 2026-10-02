@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>can i ask you a question?</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <canvas id="rain"></canvas>
+
+  <nav class="steps" aria-label="steps">
+    <button type="button" class="step active" data-go="1" aria-label="step 1">1 · ask</button>
+    <button type="button" class="step" data-go="2" aria-label="step 2">2 · promise</button>
+    <button type="button" class="step" data-go="3" aria-label="step 3">3 · question</button>
+    <button type="button" class="step" data-go="4" aria-label="step 4">4 · yay</button>
+    <button type="button" class="step" data-go="5" aria-label="step 5">5 · date</button>
+  </nav>
+
+  <main class="wrap">
+    <!-- PAGE 1 -->
+    <section class="card page active" id="page-1">
+      <div class="sticker">🌷 🌷 🌷</div>
+      <h1>can i ask you a question?</h1>
+      <div class="btn-row">
+        <button class="btn" data-go="2">Yes</button>
+        <button class="btn" data-go="2">Yes, of course</button>
+      </div>
+    </section>
+
+    <!-- PAGE 2 -->
+    <section class="card page" id="page-2">
+      <div class="sticker">promise?</div>
+      <h1>It is very important that you answer truthfully and say what your heart says.</h1>
+      <div class="btn-row center">
+        <button class="btn" data-go="3">okay</button>
+      </div>
+    </section>
+
+    <!-- PAGE 3 -->
+    <section class="card page" id="page-3">
+      <div class="sticker">be honest!!</div>
+      <h1>Will you go out with me?</h1>
+      <div class="btn-row ask-row">
+        <button class="btn btn-yes" id="yes-btn">Yes, of course. Do you even have to ask!!!!!</button>
+        <button class="btn btn-no" id="no-btn">No, kys</button>
+      </div>
+      <p class="hint">choose wisely...</p>
+    </section>
+
+    <!-- PAGE 4 : YES / TULIP RAIN -->
+    <section class="card page" id="page-4">
+      <div class="sticker">yayyyy!!</div>
+      <h1 class="big">YAY!!! 🌷🌷🌷</h1>
+      <p class="sub">you just made me the happiest!!</p>
+      <div class="btn-row center">
+        <button class="btn" data-go="5">okay, let's plan it →</button>
+      </div>
+    </section>
+
+    <!-- PAGE 5 : DATE PICKER -->
+    <section class="card page" id="page-5">
+      <div class="sticker">pick one!</div>
+      <h1>pick a perfect date:</h1>
+
+      <div class="dates" id="dates">
+        <button type="button" class="date-card" data-value="MKT tour of your favorite cafe">
+          <span class="title">MKT tour of your favorite cafe</span>
+          <span class="desc">caffeine and conversations</span>
+        </button>
+        <button type="button" class="date-card" data-value="Get stuck in a lift with me">
+          <span class="emoji">🫦</span>
+          <span class="title">Get stuck in a lift with me</span>
+          <span class="desc">what could possibly go wrong</span>
+        </button>
+        <button type="button" class="date-card" data-value="Karting">
+          <span class="title">Karting</span>
+          <span class="desc">loser pays for ice cream</span>
+        </button>
+        <button type="button" class="date-card" data-value="Tour of your favorite place anywhere else in Delhi">
+          <span class="title">Tour of your favorite place anywhere else in Delhi</span>
+          <span class="desc">you pick the spot, I plan the rest</span>
+        </button>
+      </div>
+
+      <label class="when-label" for="when">what day + time works for you?</label>
+      <input id="when" type="text" placeholder="e.g. Friday at 7pm, at the park..." autocomplete="off" />
+
+      <div class="btn-row center">
+        <button class="btn" id="submit-btn">it's a date! 🌷</button>
+      </div>
+
+      <p class="final hidden" id="final-msg"></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
