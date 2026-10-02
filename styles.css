@@ -5,6 +5,7 @@
 }
 
 :root {
+  color-scheme: light; /* opt out of Chrome auto-darkening on dark-mode phones */
   --black: #000000;
   --white: #FFFFFF;
   --pink: #F181B2;
