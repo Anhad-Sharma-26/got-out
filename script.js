@@ -185,10 +185,26 @@ const TULIP_COLORS = [
   ['#F181B2', '#D6568F'], // pink (theme pink)
 ];
 const tulipSprites = TULIP_COLORS.map(([main, dark]) => makeTulipSprite(main, dark));
+
+// Hearts in the same 6 colors as the tulips, drawn to match.
+function makeHeartSprite(color) {
+  const s = document.createElement('canvas');
+  s.width = 72; s.height = 72;
+  const c = s.getContext('2d');
+  c.fillStyle = color;
+  c.beginPath();
+  c.moveTo(36, 60);
+  c.bezierCurveTo(8, 36, 20, 12, 36, 24);
+  c.bezierCurveTo(52, 12, 64, 36, 36, 60);
+  c.fill();
+  return s;
+}
+const heartSprites = TULIP_COLORS.map(([main]) => makeHeartSprite(main));
 const hopperSprite = makeSprite('🦗'); // the one and only grasshopper
 
 function pickRainSprite() {
-  return tulipSprites[(Math.random() * tulipSprites.length) | 0]; // tulips only
+  if (Math.random() < 0.3) return heartSprites[(Math.random() * heartSprites.length) | 0];
+  return tulipSprites[(Math.random() * tulipSprites.length) | 0]; // tulips + hearts + 1 hopper
 }
 
 const MAX_PARTICLES = 110;
